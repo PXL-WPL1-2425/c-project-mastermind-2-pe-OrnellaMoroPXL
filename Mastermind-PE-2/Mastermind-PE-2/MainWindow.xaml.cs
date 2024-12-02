@@ -36,7 +36,7 @@ namespace Mastermind_PE_2
         private bool _gameIsOngoing = true;
 
         // zogenaamde debug
-        private bool _showSolution = true;
+        private bool _showSolution = false;
 
         // override > space > onClosING!! kiezen uit de dropdown
         protected override void OnClosing(CancelEventArgs e)
@@ -69,6 +69,7 @@ namespace Mastermind_PE_2
 
         private void StartGame()
         {
+            // User naam vragen.
         }
 
         private void GenerateColorCode()
