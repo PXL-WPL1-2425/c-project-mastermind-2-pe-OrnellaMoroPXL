@@ -33,7 +33,7 @@ namespace Mastermind_PE_2
         private bool _gameIsOngoing = true;
 
         // zogenaamde debug
-        private bool _showSolution = false;
+        private bool _showSolution = true;
 
         // override > space > onClosING!! kiezen uit de dropdown
         protected override void OnClosing(CancelEventArgs e)
@@ -173,37 +173,23 @@ namespace Mastermind_PE_2
             if (answerIsGuessed)
             {
                 MessageBoxResult winMessage = MessageBox.Show(
-                   $"You did it in {_attempts} tries! The code never stood a chance!\r\nUp for another round?", "WINNER", //<-message titel moet blijkbaar, anders error
-                   MessageBoxButton.YesNo,
+                   $"You did it in {_attempts} tries! The code never stood a chance!\r\nLet's see if you can beat the high-score!", "WINNER", //<-message titel moet blijkbaar, anders error
+                   MessageBoxButton.OK,
                    MessageBoxImage.Information);
                 _gameIsOngoing = false;
 
-                if (winMessage == MessageBoxResult.No)
-                {
-                    Close();
-                }
-                else
-                {
-                    NewGame();
-                }
+                NewGame();
             }
             else if (_attempts == 10)
             {
                 MessageBoxResult loseMessage = MessageBox.Show(
-                    $"Close, but no cigar! The answer was: {string.Join(", ", _code)}.\r\nTry again?", "FAILED",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question);
+                    $"Close, but no cigar! The answer was: {string.Join(", ", _code)}.\r\nLet's try again!", "FAILED",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
 
                 _gameIsOngoing = false;
 
-                if (loseMessage == MessageBoxResult.No)
-                {
-                    Close();
-                }
-                else
-                {
-                    NewGame();
-                }
+                NewGame();
             }
         }
 
