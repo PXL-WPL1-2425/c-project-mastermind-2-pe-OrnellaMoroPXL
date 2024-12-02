@@ -26,8 +26,17 @@ namespace Mastermind_PE_2
         private string[] _playerGuess = new string[4];
         private Label[] _labels = new Label[4];
         private int _attempts = 0;
+        private int _maxAttempts = 10;
         private int _score = 100;
-        private Border[,] _guessHistory = new Border[10, 4];
+        private Border[,] _guessHistory = new Border[10, 4]; // _maxattempts moet hier in
+
+        private string[] _playerName = new string[4] // Vullen met spelernamen
+        {
+            "",
+            "",
+            "",
+            ""
+        };
 
         //close message enkel mid-game met dit
         private bool _gameIsOngoing = true;
@@ -42,7 +51,7 @@ namespace Mastermind_PE_2
             if (_gameIsOngoing)
             {
                 MessageBoxResult exitMessage = MessageBox.Show(
-                    $"Closing up? All unsolved codes will remain a mystery!", $"Attempt {_attempts}/10",
+                    $"Closing up? All unsolved codes will remain a mystery!", $"Attempt {_attempts}/{_maxAttempts}",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);
                 if (exitMessage == MessageBoxResult.No)
@@ -55,7 +64,9 @@ namespace Mastermind_PE_2
         public MainWindow()
         {
             InitializeComponent();
+
             GenerateColorCode();
+            UpdateAttempt();
             _labels[0] = colorLabel1;
             _labels[1] = colorLabel2;
             _labels[2] = colorLabel3;
@@ -156,11 +167,11 @@ namespace Mastermind_PE_2
                 {
                     Width = 40,
                     Height = 40,
-                    Background = _labels[i].Background, // Use the Background of the Label
-                    BorderBrush = _labels[i].BorderBrush.Clone(), // Clone the Label's BorderBrush
-                    BorderThickness = _labels[i].BorderThickness, // Use the Label's BorderThickness
-                    CornerRadius = new CornerRadius(20), // Half of Width/Height for a perfect circle
-                    Margin = new Thickness(5) // Add some spacing
+                    Background = _labels[i].Background,
+                    BorderBrush = _labels[i].BorderBrush.Clone(),
+                    BorderThickness = _labels[i].BorderThickness,
+                    CornerRadius = new CornerRadius(20),
+                    Margin = new Thickness(5)
                 };
             }
 
@@ -180,7 +191,7 @@ namespace Mastermind_PE_2
 
                 NewGame();
             }
-            else if (_attempts == 10)
+            else if (_attempts == _maxAttempts)
             {
                 MessageBoxResult loseMessage = MessageBox.Show(
                     $"Close, but no cigar! The answer was: {string.Join(", ", _code)}.\r\nLet's try again!", "FAILED",
@@ -204,7 +215,7 @@ namespace Mastermind_PE_2
 
             _attempts = 0;
             _score = 100;
-            _guessHistory = new Border[10, 4];
+            _guessHistory = new Border[_maxAttempts, 4];
             userGuessHistory.Children.Clear();
 
             UpdateAttempt();
@@ -221,12 +232,12 @@ namespace Mastermind_PE_2
 
         private void UpdateAttempt()
         {
-            attemptLabel.Content = $"{_attempts}/10";
+            attemptLabel.Content = $"{_attempts}/{_maxAttempts}";
         }
 
         private void UpdateHistory()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < _maxAttempts; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
@@ -251,6 +262,29 @@ namespace Mastermind_PE_2
                         userGuessHistory.Children.Add(border);
                     }
                 }
+            }
+        }
+
+        private void closeApp_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void newGameMenu_Click(object sender, RoutedEventArgs e)
+        {
+            NewGame();
+        }
+
+        private void HiScore_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult highScoreMssg = MessageBox.Show(
+                $"Name - attempts - score", // player input hier in krijgen
+                "Mastermind highscores",
+                MessageBoxButton.OK,
+                MessageBoxImage.None);
+
+            for (int i = 0; i < 4; i++)
+            {
             }
         }
     }

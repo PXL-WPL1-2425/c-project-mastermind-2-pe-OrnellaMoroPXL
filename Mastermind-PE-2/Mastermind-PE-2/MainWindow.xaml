@@ -7,7 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="880" Width="535">
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Name="comboBox1" SelectionChanged="ComboBox_SelectionChanged">
+        <Menu Name="hoofdMenu" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Name="newGameMenu" Header="New game" Click="newGameMenu_Click"></MenuItem>
+                <MenuItem Name="mnuHiScore" Header="HighScores" Click="HiScore_Click"></MenuItem>
+                <MenuItem Name="closeApp" Header="Quit game" Click="closeApp_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Settings">
+                <MenuItem Header="Number of tries"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <ComboBox HorizontalAlignment="Left" Height="25" Margin="10,20,0,0" VerticalAlignment="Top" Width="120" Name="comboBox1" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="Red" />
             <ComboBoxItem Content="Orange" />
             <ComboBoxItem Content="Yellow" />
@@ -16,9 +26,9 @@
             <ComboBoxItem Content="White" />
         </ComboBox>
 
-        <Label Name="colorLabel1" Width="120" Height="120" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" BorderBrush="LightGray" BorderThickness="1" />
+        <Label Name="colorLabel1" Width="120" Height="120" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" BorderBrush="LightGray" BorderThickness="1" />
 
-        <ComboBox HorizontalAlignment="Left" Height="25" Margin="135,10,0,0" VerticalAlignment="Top" Width="120" Name="comboBox2" SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBox HorizontalAlignment="Left" Height="25" Margin="135,20,0,0" VerticalAlignment="Top" Width="120" Name="comboBox2" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="Red" />
             <ComboBoxItem Content="Orange" />
             <ComboBoxItem Content="Yellow" />
@@ -27,9 +37,9 @@
             <ComboBoxItem Content="White" />
         </ComboBox>
 
-        <Label Name="colorLabel2" Width="120" Height="120" HorizontalAlignment="Left" Margin="135,37,0,0" VerticalAlignment="Top" BorderBrush="LightGray" BorderThickness="1" />
+        <Label Name="colorLabel2" Width="120" Height="120" HorizontalAlignment="Left" Margin="135,47,0,0" VerticalAlignment="Top" BorderBrush="LightGray" BorderThickness="1" />
 
-        <ComboBox HorizontalAlignment="Left" Height="25" Margin="260,10,0,0" VerticalAlignment="Top" Width="120" Name="comboBox3" SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBox HorizontalAlignment="Left" Height="25" Margin="260,20,0,0" VerticalAlignment="Top" Width="120" Name="comboBox3" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="Red" />
             <ComboBoxItem Content="Orange" />
             <ComboBoxItem Content="Yellow" />
@@ -38,9 +48,9 @@
             <ComboBoxItem Content="White" />
         </ComboBox>
 
-        <Label Name="colorLabel3" Width="120" Height="120" HorizontalAlignment="Left" Margin="260,37,0,0" VerticalAlignment="Top" BorderBrush="LightGray" BorderThickness="1" />
+        <Label Name="colorLabel3" Width="120" Height="120" HorizontalAlignment="Left" Margin="260,47,0,0" VerticalAlignment="Top" BorderBrush="LightGray" BorderThickness="1" />
 
-        <ComboBox HorizontalAlignment="Left" Height="25" Margin="385,10,0,0" VerticalAlignment="Top" Width="120" Name="comboBox4" SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBox HorizontalAlignment="Left" Height="25" Margin="385,20,0,0" VerticalAlignment="Top" Width="120" Name="comboBox4" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="Red" />
             <ComboBoxItem Content="Orange" />
             <ComboBoxItem Content="Yellow" />
@@ -49,13 +59,13 @@
             <ComboBoxItem Content="White" />
         </ComboBox>
 
-        <Label Name="colorLabel4" Width="120" Height="120" HorizontalAlignment="Left" Margin="385,37,0,0" VerticalAlignment="Top" BorderBrush="LightGray" BorderThickness="1" />
+        <Label Name="colorLabel4" Width="120" Height="120" HorizontalAlignment="Left" Margin="385,47,0,0" VerticalAlignment="Top" BorderBrush="LightGray" BorderThickness="1" />
 
-        <Button Content="Check answers" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="332" Click="ValidateAnswers_Click" Name="validateAnswersButton" Margin="10,166,0,0" />
-        <Label Content="Attempts:" HorizontalAlignment="Left" Margin="385,161,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="60" />
-        <Label Name="attemptLabel" Content="0/10" HorizontalAlignment="Left" Margin="450,161,0,0" VerticalAlignment="Top" Width="55" HorizontalContentAlignment="Center" />
-        <Label Content="Score:" HorizontalAlignment="Left" Margin="385,189,0,0" VerticalAlignment="Top" Width="60" HorizontalContentAlignment="Right" />
-        <Label Name="scoreLabel" Content="100" HorizontalAlignment="Left" Margin="450,189,0,0" VerticalAlignment="Top" Width="60" HorizontalContentAlignment="Center" />
+        <Button Content="Check answers" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="332" Click="ValidateAnswers_Click" Name="validateAnswersButton" Margin="10,176,0,0" />
+        <Label Content="Attempts:" HorizontalAlignment="Left" Margin="385,171,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="60" />
+        <Label Name="attemptLabel" Content="0/10" HorizontalAlignment="Left" Margin="450,171,0,0" VerticalAlignment="Top" Width="55" HorizontalContentAlignment="Center" />
+        <Label Content="Score:" HorizontalAlignment="Left" Margin="385,199,0,0" VerticalAlignment="Top" Width="60" HorizontalContentAlignment="Right" />
+        <Label Name="scoreLabel" Content="100" HorizontalAlignment="Left" Margin="450,199,0,0" VerticalAlignment="Top" Width="60" HorizontalContentAlignment="Center" />
         <Grid Name="userGuessHistory" Margin="10,220,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
