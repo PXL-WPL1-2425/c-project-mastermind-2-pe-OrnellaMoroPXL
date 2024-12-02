@@ -29,14 +29,8 @@ namespace Mastermind_PE_2
         private int _maxAttempts = 10;
         private int _score = 100;
         private Border[,] _guessHistory = new Border[10, 4]; // _maxattempts moet hier in
-
-        private string[] _playerName = new string[4] // Vullen met spelernamen
-        {
-            "",
-            "",
-            "",
-            ""
-        };
+        private string[] _highScores = new string[15];
+        private string[] _playerName = new string[15]; // Vullen met spelernamen, ook max 15?
 
         //close message enkel mid-game met dit
         private bool _gameIsOngoing = true;
@@ -64,13 +58,17 @@ namespace Mastermind_PE_2
         public MainWindow()
         {
             InitializeComponent();
-
+            StartGame();
             GenerateColorCode();
             UpdateAttempt();
             _labels[0] = colorLabel1;
             _labels[1] = colorLabel2;
             _labels[2] = colorLabel3;
             _labels[3] = colorLabel4;
+        }
+
+        private void StartGame()
+        {
         }
 
         private void GenerateColorCode()
@@ -180,16 +178,29 @@ namespace Mastermind_PE_2
             UpdateScore();
             UpdateHistory();
 
-            // als antwoord juist is -> "wil je verderspelen?"
+            // einde spel -> niet meer optie geven om te sluiten
             if (answerIsGuessed)
             {
-                MessageBoxResult winMessage = MessageBox.Show(
-                   $"You did it in {_attempts} tries! The code never stood a chance!\r\nLet's see if you can beat the high-score!", "WINNER", //<-message titel moet blijkbaar, anders error
+                if (_attempts == 1)
+                {
+                    MessageBoxResult oneTryMessage = MessageBox.Show(
+                   $"Wowza! You guessed the code on your first try!\r\nLet's see how long your luck will last in the next round!", "WINNER",
                    MessageBoxButton.OK,
                    MessageBoxImage.Information);
-                _gameIsOngoing = false;
+                    _gameIsOngoing = false;
 
-                NewGame();
+                    NewGame();
+                }
+                else
+                {
+                    MessageBoxResult winMessage = MessageBox.Show(
+                       $"You did it in {_attempts} tries! The code never stood a chance!\r\nLet's aim for the high-score!", "WINNER", //<-message titel moet blijkbaar, anders error
+                       MessageBoxButton.OK,
+                       MessageBoxImage.Information);
+                    _gameIsOngoing = false;
+
+                    NewGame();
+                }
             }
             else if (_attempts == _maxAttempts)
             {
@@ -283,7 +294,7 @@ namespace Mastermind_PE_2
                 MessageBoxButton.OK,
                 MessageBoxImage.None);
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 15; i++) // max 15 scores
             {
             }
         }
